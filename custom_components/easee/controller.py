@@ -502,10 +502,7 @@ class Controller:
         all_easee_entities = {**MANDATORY_EASEE_ENTITIES, **OPTIONAL_EASEE_ENTITIES}
 
         for charger_data in self.chargers_data:
-            for key in monitored_conditions:
-                # Fix renamed entities previously configured
-                if key not in all_easee_entities:
-                    continue
+            for key in all_easee_entities:
                 data = all_easee_entities[key]
                 entity_type = data.get("type", "sensor")
 
@@ -518,10 +515,7 @@ class Controller:
                 )
 
         for equalizer_data in self.equalizers_data:
-            for key in monitored_eq_conditions:
-                # Fix renamed entities previously configured
-                if key not in EASEE_EQ_ENTITIES:
-                    continue
+            for key in EASEE_EQ_ENTITIES:
                 data = EASEE_EQ_ENTITIES[key]
                 entity_type = data.get("type", "eq_sensor")
 
